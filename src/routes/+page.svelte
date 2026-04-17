@@ -1,6 +1,9 @@
 <script lang="ts">
 	import {
 		buildSameSkyReport,
+		getTimelineSegmentMetrics,
+		getTimelineVisibleLabels,
+		getTimelineYearPercent,
 		validateSameSkyInput,
 		type SameSkyReport
 	} from '$lib/report/same-sky';
@@ -42,14 +45,12 @@
 	}
 
 	function percent(year: number, timeline: SameSkyReport['timeline']): number {
-		const span = Math.max(1, timeline.endYear - timeline.startYear);
-		return ((year - timeline.startYear) / span) * 100;
+		return getTimelineYearPercent(year, timeline);
 	}
 
 	function segmentStyle(start: number, end: number, timeline: SameSkyReport['timeline']): string {
-		const left = percent(start, timeline);
-		const width = Math.max(0, percent(end, timeline) - left);
-		return `left: ${left}%; width: ${width}%`;
+		const metrics = getTimelineSegmentMetrics(start, end, timeline);
+		return `left: ${metrics.leftPercent}%; width: ${metrics.widthPercent}%`;
 	}
 </script>
 
@@ -225,7 +226,7 @@
 						></div>
 					</div>
 					<div class="timeline-labels" aria-hidden="true">
-						{#each report.timeline.labels as label (label)}
+						{#each getTimelineVisibleLabels(report.timeline) as label (label)}
 							<span class="timeline-label" style={`left: ${percent(label, report.timeline)}%`}>
 								{label}
 							</span>

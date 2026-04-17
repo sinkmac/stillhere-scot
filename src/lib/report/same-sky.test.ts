@@ -4,6 +4,8 @@ import {
 	buildSameSkyReport,
 	estimateLifeSpan,
 	getClosestHistoricalEvent,
+	getTimelineSegmentMetrics,
+	getTimelineVisibleLabels,
 	validateSameSkyInput
 } from './same-sky';
 
@@ -64,6 +66,47 @@ describe('estimateLifeSpan', () => {
 	});
 });
 
+describe('getTimelineSegmentMetrics', () => {
+	it('keeps a same-year overlap visibly wider than zero', () => {
+		const report = buildSameSkyReport(
+			{
+				userName: 'David',
+				userBirthYear: 1959,
+				ancestorName: 'Mary',
+				ancestorBirthYear: 1888
+			},
+			{ currentYear: 2026 }
+		);
+
+		const overlap = getTimelineSegmentMetrics(
+			report.timeline.overlap.start,
+			report.timeline.overlap.end,
+			report.timeline
+		);
+
+		expect(report.timeline.overlap.start).toBe(1959);
+		expect(report.timeline.overlap.end).toBe(1959);
+		expect(overlap.widthPercent).toBeGreaterThan(0);
+		expect(overlap.leftPercent + overlap.widthPercent).toBeLessThanOrEqual(100);
+	});
+});
+
+describe('getTimelineVisibleLabels', () => {
+	it('drops labels that would collide in close-year timelines', () => {
+		const report = buildSameSkyReport(
+			{
+				userName: 'Anna',
+				userBirthYear: 2020,
+				ancestorName: 'Jean',
+				ancestorBirthYear: 2019
+			},
+			{ currentYear: 2026 }
+		);
+
+		expect(getTimelineVisibleLabels(report.timeline)).toEqual([2019, 2026, 2101]);
+	});
+});
+
 describe('buildSameSkyReport', () => {
 	it('builds the expected cards and timeline metrics', () => {
 		const report = buildSameSkyReport(
@@ -99,5 +142,35 @@ describe('buildSameSkyReport', () => {
 		);
 
 		expect(report.cards[3].body).toContain('still part of the living world');
+	});
+
+	it('uses singular wording when the ancestor was 1 year old', () => {
+		const report = buildSameSkyReport(
+			{
+				userName: 'Anna',
+				userBirthYear: 2020,
+				ancestorName: 'Jean',
+				ancestorBirthYear: 2019
+			},
+			{ currentYear: 2026 }
+		);
+
+		expect(report.cards[1].body).toContain('Jean was 1 year old.');
+	});
+
+	it('does not reuse the final dataset event as if it were exact for later years', () => {
+		const report = buildSameSkyReport(
+			{
+				userName: 'Anna',
+				userBirthYear: 2020,
+				ancestorName: 'Jean',
+				ancestorBirthYear: 2019
+			},
+			{ currentYear: 2026 }
+		);
+
+		expect(report.cards[2].body).toContain('2025');
+		expect(report.cards[2].body).toContain('moved beyond its historical event list');
+		expect(report.cards[2].body).not.toContain('pandemic closed doors');
 	});
 });

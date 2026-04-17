@@ -44,6 +44,13 @@ type BuildOptions = {
 	currentYear?: number;
 };
 
+export type TimelineSegmentMetrics = {
+	leftPercent: number;
+	widthPercent: number;
+};
+
+const TIMELINE_LABEL_MIN_GAP_PERCENT = 8;
+
 const MIN_YEAR = 1800;
 const MAX_EVENT_YEAR = historicalEvents[historicalEvents.length - 1]?.year ?? 2020;
 const lifeSpanCurve = [
@@ -144,7 +151,11 @@ export function getClosestHistoricalEvent(
 }
 
 function sentenceFromEvent(targetYear: number): string {
-	const event = getClosestHistoricalEvent(Math.min(targetYear, MAX_EVENT_YEAR));
+	if (targetYear > MAX_EVENT_YEAR) {
+		return 'By then, this first version of Same Sky has moved beyond its historical event list, which is its own reminder of how close their present came to ours.';
+	}
+
+	const event = getClosestHistoricalEvent(targetYear);
 	if (event.isExact) {
 		return event.copy;
 	}
@@ -162,6 +173,65 @@ function lowercaseFirst(value: string): string {
 
 function formatName(name: string): string {
 	return name.trim();
+}
+
+function getTimelineSpan(timeline: SameSkyReport['timeline']): number {
+	return Math.max(1, timeline.endYear - timeline.startYear + 1);
+}
+
+export function getTimelineYearPercent(year: number, timeline: SameSkyReport['timeline']): number {
+	const span = getTimelineSpan(timeline);
+	const clampedYear = Math.min(Math.max(year, timeline.startYear), timeline.endYear);
+
+	return ((clampedYear - timeline.startYear) / span) * 100;
+}
+
+export function getTimelineSegmentMetrics(
+	start: number,
+	end: number,
+	timeline: SameSkyReport['timeline']
+): TimelineSegmentMetrics {
+	const span = getTimelineSpan(timeline);
+	const clampedStart = Math.min(Math.max(start, timeline.startYear), timeline.endYear);
+	const clampedEnd = Math.min(Math.max(end, clampedStart), timeline.endYear);
+
+	return {
+		leftPercent: ((clampedStart - timeline.startYear) / span) * 100,
+		widthPercent: ((clampedEnd - clampedStart + 1) / span) * 100
+	};
+}
+
+export function getTimelineVisibleLabels(timeline: SameSkyReport['timeline']): number[] {
+	const sorted = [...timeline.labels].sort((left, right) => left - right);
+
+	if (sorted.length <= 2) {
+		return sorted;
+	}
+
+	const first = sorted[0];
+	const last = sorted[sorted.length - 1];
+	const visible = [first];
+
+	for (const year of sorted.slice(1, -1)) {
+		const yearPercent = getTimelineYearPercent(year, timeline);
+		const previousPercent = getTimelineYearPercent(visible[visible.length - 1], timeline);
+		const lastPercent = getTimelineYearPercent(last, timeline);
+
+		if (
+			yearPercent - previousPercent >= TIMELINE_LABEL_MIN_GAP_PERCENT &&
+			lastPercent - yearPercent >= TIMELINE_LABEL_MIN_GAP_PERCENT
+		) {
+			visible.push(year);
+		}
+	}
+
+	visible.push(last);
+
+	return visible;
+}
+
+function formatYearsOld(age: number): string {
+	return age === 1 ? '1 year old' : `${age} years old`;
 }
 
 export function buildSameSkyReport(input: SameSkyInput, options: BuildOptions = {}): SameSkyReport {
@@ -205,7 +275,7 @@ export function buildSameSkyReport(input: SameSkyInput, options: BuildOptions = 
 		{
 			key: 'simultaneity',
 			title: 'The same sky moment',
-			body: `When you were born, ${cleanInput.ancestorName} was ${ancestorAgeWhenUserWasBorn} years old. ${sentenceFromEvent(
+			body: `When you were born, ${cleanInput.ancestorName} was ${formatYearsOld(ancestorAgeWhenUserWasBorn)}. ${sentenceFromEvent(
 				cleanInput.userBirthYear
 			)}`,
 			year: cleanInput.userBirthYear,
