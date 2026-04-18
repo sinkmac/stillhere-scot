@@ -55,14 +55,6 @@
 	}
 </script>
 
-<svelte:head>
-	<title>Still Here — Same Sky</title>
-	<meta
-		name="description"
-		content="Compare your life with an ancestor's and receive an emotional epoch report grounded in real historical events."
-	/>
-</svelte:head>
-
 <div class="shell">
 	<header class="masthead">
 		<div>

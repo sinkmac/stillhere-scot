@@ -4,14 +4,6 @@
 	import { aboutPage } from '$lib/site-pages';
 </script>
 
-<svelte:head>
-	<title>Still Here — {aboutPage.title}</title>
-	<meta
-		name="description"
-		content="Why Still Here exists, where it came from, and how to get in touch."
-	/>
-</svelte:head>
-
 <div class="shell">
 	<header class="masthead">
 		<div>

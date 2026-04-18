@@ -4,14 +4,6 @@
 	import { privacyPage } from '$lib/site-pages';
 </script>
 
-<svelte:head>
-	<title>Still Here — {privacyPage.title}</title>
-	<meta
-		name="description"
-		content="Privacy details for Still Here Phase 1, including browser-side calculations and third-party services."
-	/>
-</svelte:head>
-
 <div class="shell">
 	<header class="masthead">
 		<div>
