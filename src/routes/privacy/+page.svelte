@@ -24,9 +24,7 @@
 					<p>
 						{#if section.heading === 'Contact'}
 							If you have any questions about this privacy policy, contact us at
-							<a class="content-link" href="mailto:sinclair.mclay@gmail.com"
-								>sinclair.mclay@gmail.com</a
-							>
+							<a class="content-link" href="mailto:hello@stillhere.scot">hello@stillhere.scot</a>
 						{:else}
 							{section.body}
 						{/if}

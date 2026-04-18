@@ -12,7 +12,7 @@ export const aboutPage = {
 		'Still Here makes sure they know who she actually was.',
 		'Still Here is built by AI Scotland Productions, Kirriemuir, Angus. Est. 2026.'
 	],
-	contactEmail: 'sinclair.mclay@gmail.com'
+	contactEmail: 'hello@stillhere.scot'
 } as const;
 
 export const privacyPage = {
@@ -33,7 +33,7 @@ export const privacyPage = {
 		},
 		{
 			heading: 'Contact',
-			body: 'If you have any questions about this privacy policy, contact us at sinclair.mclay@gmail.com'
+			body: 'If you have any questions about this privacy policy, contact us at hello@stillhere.scot'
 		}
 	]
 } as const;

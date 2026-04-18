@@ -12,7 +12,7 @@ describe('site pages content', () => {
 			'Still Here makes sure they know who she actually was.',
 			'Still Here is built by AI Scotland Productions, Kirriemuir, Angus. Est. 2026.'
 		]);
-		expect(aboutPage.contactEmail).toBe('sinclair.mclay@gmail.com');
+		expect(aboutPage.contactEmail).toBe('hello@stillhere.scot');
 	});
 
 	it('defines the exact privacy page sections and contact email', () => {
@@ -33,7 +33,7 @@ describe('site pages content', () => {
 			},
 			{
 				heading: 'Contact',
-				body: 'If you have any questions about this privacy policy, contact us at sinclair.mclay@gmail.com'
+				body: 'If you have any questions about this privacy policy, contact us at hello@stillhere.scot'
 			}
 		]);
 	});

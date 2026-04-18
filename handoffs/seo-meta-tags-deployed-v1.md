@@ -4,6 +4,7 @@ Updated: 2026-04-18T10:52:48+01:00
 Scope: site-wide head metadata pass
 
 What changed
+
 - Added shared head metadata for every page via src/routes/+layout.svelte
 - Added:
   - title: Still Here — Same Sky
@@ -26,10 +27,12 @@ What changed
   - src/lib/site-seo.test.ts
 
 Verification
+
 - npm test: pass
 - npm run check: pass
 - npm run build: pass
 - npm run lint: pass
 
 Deployment note
+
 - This artifact records the SEO pass only. About/privacy deployment was handled in its own earlier artifact.
