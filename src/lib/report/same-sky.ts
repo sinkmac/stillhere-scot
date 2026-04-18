@@ -172,7 +172,9 @@ function lowercaseFirst(value: string): string {
 }
 
 function formatName(name: string): string {
-	return name.trim();
+	return name.trim().replace(/(^|[\s'-])([a-z])/g, (_match, prefix: string, letter: string) => {
+		return `${prefix}${letter.toUpperCase()}`;
+	});
 }
 
 function getTimelineSpan(timeline: SameSkyReport['timeline']): number {

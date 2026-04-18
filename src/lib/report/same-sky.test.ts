@@ -130,6 +130,40 @@ describe('buildSameSkyReport', () => {
 		expect(report.timeline.usesEstimatedLifespan).toBe(true);
 	});
 
+	it('capitalises report names for headings and card copy', () => {
+		const report = buildSameSkyReport(
+			{
+				userName: 'jon',
+				userBirthYear: 1990,
+				ancestorName: 'meg grant',
+				ancestorBirthYear: 1930
+			},
+			{ currentYear: 2026 }
+		);
+
+		expect(report.input.userName).toBe('Jon');
+		expect(report.input.ancestorName).toBe('Meg Grant');
+		expect(report.cards[0].title).toBe("Meg Grant's birth world");
+		expect(report.cards[1].body).toContain('Meg Grant was 60 years old');
+		expect(report.cards[3].body).toContain('Meg Grant');
+	});
+
+	it('capitalises report names without flattening valid interior capitals', () => {
+		const report = buildSameSkyReport(
+			{
+				userName: 'jon',
+				userBirthYear: 1990,
+				ancestorName: 'McDonald',
+				ancestorBirthYear: 1930
+			},
+			{ currentYear: 2026 }
+		);
+
+		expect(report.input.userName).toBe('Jon');
+		expect(report.input.ancestorName).toBe('McDonald');
+		expect(report.cards[0].title).toBe("McDonald's birth world");
+	});
+
 	it('switches the final card when the ancestor could plausibly still be alive', () => {
 		const report = buildSameSkyReport(
 			{
