@@ -70,8 +70,9 @@
 				<h1>When your grandparents were your age, who were they?</h1>
 				<p>
 					Still Here turns two birth years into something more human than a family record. Enter
-					your name, an ancestor's name, and the years you were born. The result is an epoch report:
-					four emotional cards, one timeline, and a sharper sense of how close the past really is.
+					your name, an ancestor's name, and the years you were born. The result is a personal
+					report: four emotional cards, one timeline, and a sharper sense of how close the past
+					really is.
 				</p>
 				<div class="hero-pullquote">
 					“When you were born, they had already lived a whole life in a world that felt as normal to
@@ -137,7 +138,7 @@
 						</label>
 					</div>
 
-					<button class="primary-button" type="submit">Generate epoch report</button>
+					<button class="primary-button" type="submit">Generate your report</button>
 					<div class="button-caption">No accounts. No storage. Just the comparison.</div>
 				</form>
 			</div>
@@ -147,7 +148,6 @@
 			{#if report}
 				<div class="result-header">
 					<div>
-						<div class="result-kicker">Epoch report</div>
 						<h2 class="result-title">{report.input.userName} and {report.input.ancestorName}</h2>
 					</div>
 					<div class="note">Current year: {currentYear}</div>
@@ -261,7 +261,7 @@
 			{:else}
 				<div class="result-header">
 					<div>
-						<div class="result-kicker">Waiting for your years</div>
+						<div class="result-kicker">Waiting for your names</div>
 						<h2 class="result-title">The report appears here.</h2>
 					</div>
 				</div>
@@ -285,7 +285,7 @@
 						</p>
 					</div>
 					<div class="placeholder-card">
-						<strong>Inversion</strong>
+						<strong>When they were your age</strong>
 						<p>
 							At your exact age, their present moment belonged to a year that now feels like
 							history.
