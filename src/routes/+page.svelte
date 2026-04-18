@@ -61,7 +61,6 @@
 			<div class="brand-mark">Still <em>Here</em></div>
 			<div class="brand-tagline">because they were here too</div>
 		</div>
-		<div class="eyebrow">Phase 1 — Same Sky</div>
 	</header>
 
 	<main>
