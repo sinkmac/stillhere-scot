@@ -39,7 +39,7 @@ describe('sensory function', () => {
 	});
 
 	it('returns the four generated passages from Anthropic', async () => {
-		process.env.ANTHROPIC_API_KEY = 'test-key';
+		process.env.ANTHROPIC_API_KEY = '***';
 		const fetch = vi.fn().mockResolvedValue(
 			new Response(
 				JSON.stringify({
@@ -78,5 +78,73 @@ describe('sensory function', () => {
 		expect(parsedRequest.model).toBe('claude-haiku-4-5-20251001');
 		expect(parsedRequest.max_tokens).toBe(600);
 		expect(parsedRequest.messages[0].content).toContain('current_year: 2026');
+	});
+
+	it('parses Claude responses wrapped in markdown fences', async () => {
+		process.env.ANTHROPIC_API_KEY = '***';
+		const fetch = vi.fn().mockResolvedValue(
+			new Response(
+				JSON.stringify({
+					content: [
+						{
+							type: 'text',
+							text: '```json\n{"birth_world":"Birth world body","shared_moment":"Shared moment body","inversion":"Inversion body","beyond":"Beyond body"}\n```'
+						}
+					]
+				}),
+				{ status: 200, headers: { 'content-type': 'application/json' } }
+			)
+		);
+		vi.stubGlobal('fetch', fetch);
+
+		const response = await handler({
+			httpMethod: 'POST',
+			body: JSON.stringify(validPayload)
+		});
+
+		expect(response.statusCode).toBe(200);
+		expect(JSON.parse(response.body)).toEqual({
+			birth_world: 'Birth world body',
+			shared_moment: 'Shared moment body',
+			inversion: 'Inversion body',
+			beyond: 'Beyond body'
+		});
+	});
+
+	it('ignores extra JSON keys from Claude and returns only the four card fields', async () => {
+		process.env.ANTHROPIC_API_KEY = '***';
+		const fetch = vi.fn().mockResolvedValue(
+			new Response(
+				JSON.stringify({
+					content: [
+						{
+							type: 'text',
+							text: JSON.stringify({
+								birth_world: 'Birth world body',
+								shared_moment: 'Shared moment body',
+								inversion: 'Inversion body',
+								beyond: 'Beyond body',
+								notes: 'extra'
+							})
+						}
+					]
+				}),
+				{ status: 200, headers: { 'content-type': 'application/json' } }
+			)
+		);
+		vi.stubGlobal('fetch', fetch);
+
+		const response = await handler({
+			httpMethod: 'POST',
+			body: JSON.stringify(validPayload)
+		});
+
+		expect(response.statusCode).toBe(200);
+		expect(JSON.parse(response.body)).toEqual({
+			birth_world: 'Birth world body',
+			shared_moment: 'Shared moment body',
+			inversion: 'Inversion body',
+			beyond: 'Beyond body'
+		});
 	});
 });
