@@ -67,7 +67,7 @@
 		<section class="hero">
 			<div class="panel hero-copy">
 				<div class="eyebrow">One page. One button. One report.</div>
-				<h1>Place your life beside theirs.</h1>
+				<h1>When your grandparents were your age, who were they?</h1>
 				<p>
 					Same Sky turns two birth years into something more human than a family record. Enter your
 					name, an ancestor's name, and the years you were born. The result is an epoch report: four
