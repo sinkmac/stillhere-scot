@@ -66,7 +66,7 @@
 	<main>
 		<section class="hero">
 			<div class="panel hero-copy">
-				<div class="eyebrow">One page. One button. One report.</div>
+				<div class="eyebrow">Free to use</div>
 				<h1>When your grandparents were your age, who were they?</h1>
 				<p>
 					Still Here turns two birth years into something more human than a family record. Enter
