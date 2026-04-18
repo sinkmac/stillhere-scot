@@ -148,9 +148,7 @@
 					</div>
 
 					<button class="primary-button" type="submit">Show me the window →</button>
-					<div class="button-caption">
-						No accounts. No storage. Pure JavaScript date arithmetic.
-					</div>
+					<div class="button-caption">No accounts. No storage.</div>
 				</form>
 			</div>
 		</section>

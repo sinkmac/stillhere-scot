@@ -71,6 +71,26 @@ describe('buildFamilyChainReport', () => {
 		);
 	});
 
+	it('capitalises all three names in the rendered output without flattening interior capitals', () => {
+		const report = buildFamilyChainReport(
+			{
+				userName: 'jay',
+				userBirthYear: 2000,
+				parentName: 'meg',
+				parentBirthYear: 1975,
+				grandparentName: 'McDonald',
+				grandparentBirthYear: 1950
+			},
+			{ currentYear: 2026 }
+		);
+
+		expect(report.input.userName).toBe('Jay');
+		expect(report.input.parentName).toBe('Meg');
+		expect(report.input.grandparentName).toBe('McDonald');
+		expect(report.cards[0].body).toBe('Jay and McDonald have shared 26 years so far.');
+		expect(report.cards[1].body).toBe('Jay and Meg have shared 26 years so far.');
+	});
+
 	it('switches the final card when the grandparent would already be past 81', () => {
 		const report = buildFamilyChainReport(
 			{

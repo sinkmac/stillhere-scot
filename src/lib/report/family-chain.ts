@@ -112,7 +112,9 @@ export function validateFamilyChainInput(
 }
 
 function formatName(name: string): string {
-	return name.trim();
+	return name.trim().replace(/(^|[\s'-])([a-z])/g, (_match, prefix: string, letter: string) => {
+		return `${prefix}${letter.toUpperCase()}`;
+	});
 }
 
 function pluralizeYears(years: number): string {
