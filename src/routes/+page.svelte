@@ -8,6 +8,7 @@
 		type SameSkyReport
 	} from '$lib/report/same-sky';
 	import SiteFooter from '$lib/components/SiteFooter.svelte';
+	import SiteHeader from '$lib/components/SiteHeader.svelte';
 
 	const currentYear = new Date().getFullYear();
 	const form = $state({
@@ -56,12 +57,7 @@
 </script>
 
 <div class="shell">
-	<header class="masthead">
-		<div>
-			<div class="brand-mark">Still <em>Here</em></div>
-			<div class="brand-tagline">because they were here too</div>
-		</div>
-	</header>
+	<SiteHeader activeHref="/" />
 
 	<main>
 		<section class="hero">

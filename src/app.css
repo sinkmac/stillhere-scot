@@ -91,10 +91,35 @@ button {
 
 .brand-link:focus-visible,
 .site-footer-link:focus-visible,
-.content-link:focus-visible {
+.content-link:focus-visible,
+.masthead-link:focus-visible,
+.report-cta-link:focus-visible {
 	outline: 2px solid var(--accent-user);
 	outline-offset: 4px;
 	border-radius: 6px;
+}
+
+.masthead-nav {
+	display: inline-flex;
+	gap: 0.55rem;
+	align-items: center;
+	justify-content: flex-end;
+	flex-wrap: wrap;
+	padding-top: 0.3rem;
+}
+
+.masthead-link {
+	color: var(--muted);
+	text-decoration: none;
+	font-size: 0.78rem;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+.masthead-link--active {
+	color: var(--ink);
+	text-decoration: underline;
+	text-underline-offset: 0.2em;
 }
 
 .brand-tagline,
@@ -421,6 +446,10 @@ button {
 	gap: 0.9rem;
 	grid-template-columns: repeat(3, minmax(0, 1fr));
 	margin-top: 1.2rem;
+}
+
+.placeholder-grid--four {
+	grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .placeholder-card strong {
