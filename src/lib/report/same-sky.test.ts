@@ -123,6 +123,7 @@ describe('buildSameSkyReport', () => {
 		expect(report.stats.ancestorAgeWhenUserWasBorn).toBe(60);
 		expect(report.stats.ancestorWouldBeToday).toBe(96);
 		expect(report.cards).toHaveLength(4);
+		expect(report.cards[1].title).toBe('When your worlds met');
 		expect(report.cards[1].body).toContain('Margaret was 60 years old');
 		expect(report.cards[2].body).toContain('1966');
 		expect(report.timeline.overlap.start).toBe(1990);

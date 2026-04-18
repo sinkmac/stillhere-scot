@@ -276,7 +276,7 @@ export function buildSameSkyReport(input: SameSkyInput, options: BuildOptions = 
 		},
 		{
 			key: 'simultaneity',
-			title: 'The same sky moment',
+			title: 'When your worlds met',
 			body: `When you were born, ${cleanInput.ancestorName} was ${formatYearsOld(ancestorAgeWhenUserWasBorn)}. ${sentenceFromEvent(
 				cleanInput.userBirthYear
 			)}`,

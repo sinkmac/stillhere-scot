@@ -232,7 +232,7 @@
 						class="result-title"
 						style="font-size: clamp(1.6rem, 3vw, 2.2rem); margin-top: 0.25rem;"
 					>
-						The stretch of years you can hold together
+						The overlap
 					</h3>
 					<p class="timeline-caption">
 						Purple marks your ancestor's estimated life span, teal marks your own years so far, and
