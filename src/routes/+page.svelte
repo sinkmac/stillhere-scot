@@ -69,9 +69,9 @@
 				<div class="eyebrow">One page. One button. One report.</div>
 				<h1>When your grandparents were your age, who were they?</h1>
 				<p>
-					Same Sky turns two birth years into something more human than a family record. Enter your
-					name, an ancestor's name, and the years you were born. The result is an epoch report: four
-					emotional cards, one timeline, and a sharper sense of how close the past really is.
+					Still Here turns two birth years into something more human than a family record. Enter
+					your name, an ancestor's name, and the years you were born. The result is an epoch report:
+					four emotional cards, one timeline, and a sharper sense of how close the past really is.
 				</p>
 				<div class="hero-pullquote">
 					“When you were born, they had already lived a whole life in a world that felt as normal to
@@ -279,7 +279,7 @@
 						</p>
 					</div>
 					<div class="placeholder-card">
-						<strong>The same sky moment</strong>
+						<strong>The shared moment</strong>
 						<p>
 							When you arrived, they had already lived long enough to call a different era ordinary.
 						</p>
