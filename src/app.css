@@ -441,6 +441,21 @@ button {
 	letter-spacing: -0.015em;
 }
 
+.epoch-body--loading {
+	animation: epoch-body-pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes epoch-body-pulse {
+	0%,
+	100% {
+		opacity: 0.55;
+	}
+
+	50% {
+		opacity: 1;
+	}
+}
+
 .placeholder-grid {
 	display: grid;
 	gap: 0.9rem;

@@ -7,6 +7,12 @@
 		validateSameSkyInput,
 		type SameSkyReport
 	} from '$lib/report/same-sky';
+	import {
+		applySensoryCopy,
+		buildSensoryPayload,
+		isSensoryCopy,
+		type SensoryCopy
+	} from '$lib/report/sensory';
 	import SiteFooter from '$lib/components/SiteFooter.svelte';
 	import SiteHeader from '$lib/components/SiteHeader.svelte';
 
@@ -19,12 +25,35 @@
 	});
 	let report = $state<SameSkyReport | null>(null);
 	let errors = $state<string[]>([]);
+	let isSensoryLoading = $state(false);
+	let latestSensoryRequest = 0;
 
 	function parseYear(value: string): number {
 		return Number.parseInt(value, 10);
 	}
 
-	function handleSubmit(event: SubmitEvent) {
+	async function requestSensoryCopy(nextReport: SameSkyReport): Promise<SensoryCopy | null> {
+		try {
+			const response = await fetch('/.netlify/functions/sensory', {
+				method: 'POST',
+				headers: {
+					'content-type': 'application/json'
+				},
+				body: JSON.stringify(buildSensoryPayload(nextReport))
+			});
+
+			if (!response.ok) {
+				return null;
+			}
+
+			const sensory = await response.json();
+			return isSensoryCopy(sensory) ? sensory : null;
+		} catch {
+			return null;
+		}
+	}
+
+	async function handleSubmit(event: SubmitEvent) {
 		event.preventDefault();
 
 		const input = {
@@ -37,13 +66,35 @@
 		const validation = validateSameSkyInput(input, { currentYear });
 
 		if (!validation.valid) {
+			latestSensoryRequest += 1;
+			isSensoryLoading = false;
 			errors = validation.errors;
 			report = null;
 			return;
 		}
 
 		errors = [];
-		report = buildSameSkyReport(input, { currentYear });
+		const staticReport = buildSameSkyReport(input, { currentYear });
+		report = staticReport;
+
+		const requestId = latestSensoryRequest + 1;
+		latestSensoryRequest = requestId;
+		isSensoryLoading = true;
+
+		try {
+			const sensory = await requestSensoryCopy(staticReport);
+			if (requestId !== latestSensoryRequest) {
+				return;
+			}
+
+			if (sensory) {
+				report = applySensoryCopy(staticReport, sensory);
+			}
+		} finally {
+			if (requestId === latestSensoryRequest) {
+				isSensoryLoading = false;
+			}
+		}
 	}
 
 	function percent(year: number, timeline: SameSkyReport['timeline']): number {
@@ -238,7 +289,7 @@
 							{#if card.year}
 								<div class="epoch-year">{card.year}</div>
 							{/if}
-							<p class="epoch-body">{card.body}</p>
+							<p class:epoch-body--loading={isSensoryLoading} class="epoch-body">{card.body}</p>
 						</article>
 					{/each}
 				</div>
