@@ -17,6 +17,11 @@
 	<meta property="og:image" content={siteSeo.ogImage} />
 	<meta property="og:url" content={siteSeo.url} />
 	<meta property="og:type" content={siteSeo.ogType} />
+	<script
+		async
+		src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2335335210412692"
+		crossorigin="anonymous"
+	></script>
 </svelte:head>
 
 {@render children()}
