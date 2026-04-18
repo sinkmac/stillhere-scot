@@ -247,6 +247,18 @@
 						</article>
 					{/each}
 				</div>
+
+				<p class="report-cta">
+					Curious about {report.input.ancestorName}'s records?
+					<a
+						class="report-cta-link"
+						href="https://www.ancestry.co.uk"
+						rel="noopener noreferrer"
+						target="_blank"
+					>
+						Search the world's largest family history archive →
+					</a>
+				</p>
 			{:else}
 				<div class="result-header">
 					<div>

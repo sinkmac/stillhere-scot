@@ -472,9 +472,25 @@ button {
 }
 
 .site-footer-link:hover,
-.content-link:hover {
+.content-link:hover,
+.report-cta-link:hover {
 	text-decoration: underline;
 	text-underline-offset: 0.2em;
+}
+
+.report-cta {
+	margin: 1.25rem 0 0;
+	text-align: center;
+	font-size: 0.78rem;
+	letter-spacing: 0.08em;
+	text-transform: none;
+	color: var(--muted);
+	line-height: 1.7;
+}
+
+.report-cta-link {
+	color: inherit;
+	text-decoration: none;
 }
 
 .content-panel {
