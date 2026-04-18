@@ -84,6 +84,19 @@ button {
 	font-weight: 500;
 }
 
+.brand-link {
+	color: inherit;
+	text-decoration: none;
+}
+
+.brand-link:focus-visible,
+.site-footer-link:focus-visible,
+.content-link:focus-visible {
+	outline: 2px solid var(--accent-user);
+	outline-offset: 4px;
+	border-radius: 6px;
+}
+
 .brand-tagline,
 .eyebrow,
 .field-label,
@@ -432,6 +445,71 @@ button {
 	text-align: center;
 	text-transform: none;
 	letter-spacing: 0;
+}
+
+.site-footer {
+	margin-top: 1.5rem;
+	padding-bottom: 0.5rem;
+	text-align: center;
+	color: var(--muted);
+	font-size: 0.78rem;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+.site-footer-nav {
+	display: inline-flex;
+	gap: 0.55rem;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.site-footer-link,
+.content-link {
+	color: inherit;
+	text-decoration: none;
+}
+
+.site-footer-link:hover,
+.content-link:hover {
+	text-decoration: underline;
+	text-underline-offset: 0.2em;
+}
+
+.content-panel {
+	padding: clamp(1.4rem, 3vw, 2.3rem);
+}
+
+.content-title {
+	margin: 0.3rem 0 0;
+	font-family: 'Playfair Display', serif;
+	font-size: clamp(2rem, 4vw, 3.2rem);
+	line-height: 1;
+	letter-spacing: -0.04em;
+}
+
+.content-body {
+	margin-top: 1.5rem;
+	display: grid;
+	gap: 1rem;
+	font-family: 'Playfair Display', serif;
+	font-size: clamp(1.1rem, 2.1vw, 1.45rem);
+	line-height: 1.8;
+}
+
+.content-body p,
+.content-body h2 {
+	margin: 0;
+}
+
+.content-section-title {
+	padding-top: 0.6rem;
+	font-family: 'DM Mono', monospace;
+	font-size: 0.8rem;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--muted);
 }
 
 @keyframes fade-rise {

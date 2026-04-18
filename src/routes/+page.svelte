@@ -7,6 +7,7 @@
 		validateSameSkyInput,
 		type SameSkyReport
 	} from '$lib/report/same-sky';
+	import SiteFooter from '$lib/components/SiteFooter.svelte';
 
 	const currentYear = new Date().getFullYear();
 	const form = $state({
@@ -292,5 +293,5 @@
 		</section>
 	</main>
 
-	<div class="footer-copy">Still Here is quiet by design. No feed. No profile. No noise.</div>
+	<SiteFooter />
 </div>
