@@ -14,7 +14,7 @@
         <h1>{homepageContent.headline}</h1>
         <p>{homepageContent.subhead}</p>
         <div class="hero-cta-group">
-          <a class="primary-button" href={homepageContent.ctaHref}>{homepageContent.ctaLabel}</a>
+          <a class="primary-button hero-button" href={homepageContent.ctaHref}>{homepageContent.ctaLabel}</a>
           <div class="button-caption">{homepageContent.tagline}</div>
         </div>
       </div>
