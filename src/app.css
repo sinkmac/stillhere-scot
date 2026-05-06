@@ -249,14 +249,15 @@ button {
 }
 
  .primary-button {
-	width: 100%;
+	width: auto;
 	border: 0;
-	border-radius: 999px;
-	padding: 1rem 1.25rem;
+	border-radius: 10px;
+	padding: 0.78rem 1.05rem;
 	background: var(--cta-bg);
 	color: var(--cta-fg);
-	font-weight: 600;
-	letter-spacing: 0.04em;
+	font-weight: 500;
+	font-size: 0.82rem;
+	letter-spacing: 0.06em;
 	text-transform: uppercase;
 	transition: background 0.2s ease;
 }
@@ -267,7 +268,7 @@ button {
 
 .hero-button {
 	width: auto;
-	min-width: 12rem;
+	min-width: 9.5rem;
 }
 
 .error-list {
