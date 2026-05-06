@@ -8,7 +8,7 @@
 <header class="masthead">
   <div>
     <a class="brand-mark brand-link" href={resolve('/')}>Still <em>Here</em></a>
-    <div class="brand-tagline">because they were here too</div>
+    <div class="brand-tagline">For families. For researchers. For everyone who knows the window is closing.</div>
   </div>
   <nav class="masthead-nav" aria-label="Primary navigation">
     {#each primaryNavigationLinks as link (link.href)}

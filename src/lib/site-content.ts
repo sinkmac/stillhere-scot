@@ -38,8 +38,7 @@ export const aboutPage = {
     'I sat with that for a long time. And then I started to think about what was different now.',
     "From this point forward, anyone who thinks to act will leave something entirely different behind. Not scratch marks. Speech. Photographs. Video. A grandmother talking about what the street smelled like, what she wore to her first job, what she thought about when she was frightened. A grandfather explaining what he believed, what he regretted, what he was proud of. Living history — not a record of a person, but the person themselves, still present for whoever comes looking a hundred years from now.",
     'That is what Still Here is for.',
-    'We are a living memory and genealogy platform. We help families record the testimonies that no official document was ever designed to keep — and build the archive that future generations will be grateful someone thought to make.',
-    "We launched on St Andrew's Day 2026, from Kirriemuir, Angus."
+    'We are a living memory and genealogy platform. We help families record the testimonies that no official document was ever designed to keep — and build the archive that future generations will be grateful someone thought to make.'
   ]
 } as const;
 
