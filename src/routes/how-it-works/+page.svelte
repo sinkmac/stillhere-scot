@@ -1,19 +1,20 @@
 <script lang="ts">
   import SiteFooter from '$lib/components/SiteFooter.svelte';
   import SiteHeader from '$lib/components/SiteHeader.svelte';
-  import { aboutPage } from '$lib/site-content';
+  import { howItWorksPage } from '$lib/site-content';
 </script>
 
 <div class="shell">
-  <SiteHeader activeHref="/about" />
+  <SiteHeader activeHref="/how-it-works" />
 
   <main>
     <section class="panel content-panel">
       <div class="eyebrow">Still Here</div>
-      <h1 class="content-title">{aboutPage.title}</h1>
+      <h1 class="content-title">{howItWorksPage.title}</h1>
       <div class="content-body">
-        {#each aboutPage.paragraphs as paragraph}
-          <p>{paragraph}</p>
+        {#each howItWorksPage.sections as section}
+          <h2 class="content-section-title">{section.heading}</h2>
+          <p>{section.body}</p>
         {/each}
       </div>
     </section>

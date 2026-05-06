@@ -1,4 +1,7 @@
-export const toolNavigationLinks = [
-	{ href: '/', label: 'Still Here' },
-	{ href: '/family-chain', label: 'The Family Chain' }
+export const primaryNavigationLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/how-it-works', label: 'How it works' },
+  { href: '/scottish-heritage', label: 'Scottish heritage' },
+  { href: '/faq', label: 'FAQ' }
 ] as const;

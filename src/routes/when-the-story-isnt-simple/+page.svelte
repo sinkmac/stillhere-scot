@@ -1,20 +1,22 @@
 <script lang="ts">
   import SiteFooter from '$lib/components/SiteFooter.svelte';
   import SiteHeader from '$lib/components/SiteHeader.svelte';
-  import { aboutPage } from '$lib/site-content';
+  import { articles } from '$lib/site-content';
 </script>
 
 <div class="shell">
-  <SiteHeader activeHref="/about" />
+  <SiteHeader activeHref="/when-the-story-isnt-simple" />
 
   <main>
     <section class="panel content-panel">
-      <div class="eyebrow">Still Here</div>
-      <h1 class="content-title">{aboutPage.title}</h1>
+      <div class="eyebrow">Editorial</div>
+      <h1 class="content-title">{articles.storyIsntSimple.title}</h1>
       <div class="content-body">
-        {#each aboutPage.paragraphs as paragraph}
+        {#each articles.storyIsntSimple.body as paragraph}
           <p>{paragraph}</p>
         {/each}
+        <hr class="content-rule" />
+        <p>{articles.storyIsntSimple.footer}</p>
       </div>
     </section>
   </main>
