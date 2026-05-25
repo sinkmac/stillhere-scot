@@ -3,7 +3,8 @@ export const footerLinks = [
   { href: '/how-it-works', label: 'How it works' },
   { href: '/scottish-heritage', label: 'Scottish heritage' },
   { href: '/faq', label: 'FAQ' },
-  { href: '/privacy', label: 'Privacy' }
+  { href: '/privacy', label: 'Privacy' },
+  { href: '/contact', label: 'Contact' }
 ] as const;
 
 export const primaryNavigationLinks = [
